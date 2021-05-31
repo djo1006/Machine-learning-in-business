@@ -148,5 +148,11 @@ $`kredit = credit_risk`
 ### Клонируем репозиторий и создаем образ
 
 $ git clone https://github.com/djo1006/Machine-learning-in-business.git
+
 $ cd course_work
+
 $ docker build -t djo1006/german_credit_data_pipeline .
+
+### Запускаем контейнер
+
+docker run -d -p 8180:8180 -p 8181:8181 djo1006/german_credit_data_pipeline -v ./models:/app/app/models
