@@ -144,3 +144,9 @@ $`kredit = credit_risk`
          
  0 : bad 
  1 : good
+
+### Клонируем репозиторий и создаем образ
+
+$ git clone https://github.com/djo1006/Machine-learning-in-business.git
+$ cd course_work
+$ docker build -t djo1006/german_credit_data_pipeline .
