@@ -1,0 +1,1 @@
+﻿docker run -d -p 8180:8180 -p 8181:8181 -v /d/tmp:/app/app/models fimochka/gb_docker_flask_example
