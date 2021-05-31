@@ -49,19 +49,13 @@ def predict():
 
 		description, company_profile, benefits = "", "", ""
 		request_json = flask.request.get_json()
-		if request_json["description"]:
-			description = request_json['description']
-
-		if request_json["company_profile"]:
-			company_profile = request_json['company_profile']
-
-		if request_json["benefits"]:
-			benefits = request_json['benefits']
-		logger.info(f'{dt} Data: description={description}, company_profile={company_profile}, benefits={benefits}')
+		
+		X_test = pd.DataFrame.from_dict(request_json)
 		try:
-			preds = model.predict_proba(pd.DataFrame({"description": [description],
-												  "company_profile": [company_profile],
-												  "benefits": [benefits]}))
+			#preds = model.predict_proba(pd.DataFrame({"description": [description],
+			#									  "company_profile": [company_profile],
+			#									  "benefits": [benefits]}))
+			preds = model.predict(X_test)
 		except AttributeError as e:
 			logger.warning(f'{dt} Exception: {str(e)}')
 			data['predictions'] = str(e)
