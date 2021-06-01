@@ -52,9 +52,6 @@ def predict():
 		
 		X_test = pd.DataFrame.from_dict(request_json)
 		try:
-			#preds = model.predict_proba(pd.DataFrame({"description": [description],
-			#									  "company_profile": [company_profile],
-			#									  "benefits": [benefits]}))
 			preds = model.predict(X_test)
 		except AttributeError as e:
 			logger.warning(f'{dt} Exception: {str(e)}')
@@ -62,8 +59,9 @@ def predict():
 			data['success'] = False
 			return flask.jsonify(data)
 
-		data["predictions"] = preds[:, 1][0]
+		data["predictions"] = preds.tolist()
 		# indicate that the request was a success
+		# data["predictions"] = 0
 		data["success"] = True
 
 	# return the data dictionary as a JSON response
